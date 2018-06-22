@@ -5,7 +5,7 @@ class MyComponent extends Component {
   render () {
     return (
       <div styleName='wrapper'>
-        MyComponent test sd owendsgfzrdsfxgcf
+        MyComponent test sd 
       </div>
     )
   }
