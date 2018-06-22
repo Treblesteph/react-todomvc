@@ -1,0 +1,19 @@
+{
+  "presets": [
+    "env"
+  ],
+  "plugins": [
+    "transform-class-properties",
+    "transform-react-jsx",
+    [
+      "react-css-modules", {
+        "filetypes": {
+          ".scss": {
+            "syntax": "postcss-scss"
+          }
+        },
+        "generateScopedName": "mmt-[name]__[local]"
+      }
+    ]
+  ]
+}
