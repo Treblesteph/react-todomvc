@@ -1,10 +1,5 @@
 # To Do MVC
 
-Reimplement the following piece of UI: http://todomvc.com/examples/react/#/
+This is a [React](https://reactjs.org/)/[Redux](https://redux.js.org/) implementation of the [Todo MVC application](http://todomvc.com/examples/react/#/).
 
-Using...
-- ES6
-- React
-- A state management library of your choice (or the context API!)
-- React CSS modules
-
+![](https://github.com/tastejs/todomvc-app-css/raw/master/screenshot.png)
