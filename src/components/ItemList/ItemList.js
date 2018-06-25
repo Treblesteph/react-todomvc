@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import './ItemList.scss'
+
 class ItemList extends Component {
   render () {
     return (

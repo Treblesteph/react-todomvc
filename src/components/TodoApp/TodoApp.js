@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import AddItem from "./AddItem";
-import ItemList from "./ItemList";
+import AddItem from "../AddItem";
+import ItemList from "../ItemList";
+
+import './TodoApp.scss'
 
 
 class TodoApp extends Component {
