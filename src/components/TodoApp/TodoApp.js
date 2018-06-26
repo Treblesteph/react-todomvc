@@ -21,6 +21,8 @@ class TodoApp extends Component {
     }
     this.props.addNewTodo(foo)
 
+  handleToggleTodo = id => {
+    this.props.toggleTodo(id);
   };
 
   render() {
@@ -54,13 +56,15 @@ class TodoApp extends Component {
 const mapPropsToState = state => {
   return {
     todos: state.todos
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    addNewTodo: todo => dispatch(actions.addNewTodo(todo))
-  }
-}
+    addNewTodo: todo => dispatch(actions.addNewTodo(todo)),
+    editTodo: todo => dispatch(actions.editTodo(todo)),
+    toggleTodo: todo => dispatch(actions.toggleTodo(todo))
+  };
+};
 
 export default connect(mapPropsToState, mapDispatchToProps)(TodoApp);

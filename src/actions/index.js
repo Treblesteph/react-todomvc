@@ -11,10 +11,15 @@ const addNewTodo = content => ({
 const setVisibilityFilter = filter => ({
   type: "SET_VISIBILITY_FILTER",
   filter
-})
+});
+
+const updateTodo = id => ({
+  type: "UPDATE_TODO",
+  id
+});
 
 const toggleTodo = id => ({
-  type: 'TOGGLE_TODO',
+  type: "TOGGLE_TODO",
   id
 });
 
