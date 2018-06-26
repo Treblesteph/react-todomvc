@@ -1,17 +1,34 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import AddItem from "../AddItem";
 import ItemList from "../ItemList";
+import * as actions from '../../actions'
 
-import './TodoApp.scss'
-
+import "./TodoApp.scss";
 
 class TodoApp extends Component {
-  render () {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      visibleTodos: []
+    };
+  }
+
+  handleAddTodo = () => {
+    const foo = {
+      content: 'foo'
+    }
+    this.props.addNewTodo(foo)
+
+  };
+
+  render() {
     return (
       <React.Fragment>
-        <AddItem />
-        <ItemList />
-        <form>
+        <AddItem handleAddTodo={this.handleAddTodo} />
+        <ItemList visibleTodos={this.state.visibleTodos} />
+        {/* <form>
           <p>1 item left</p>
           <div>
             <input type="radio" id="all" name="filter" checked />
@@ -28,10 +45,22 @@ class TodoApp extends Component {
             <label for="completed">Completed</label>
           </div>
           <input type="button" className="btn" value="Clear completed"></input>
-        </form>
+        </form> */}
       </React.Fragment>
-    )
+    );
   }
 }
 
-export default TodoApp
+const mapPropsToState = state => {
+  return {
+    todos: state.todos
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addNewTodo: todo => dispatch(actions.addNewTodo(todo))
+  }
+}
+
+export default connect(mapPropsToState, mapDispatchToProps)(TodoApp);
