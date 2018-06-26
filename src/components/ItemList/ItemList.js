@@ -14,7 +14,7 @@ class ItemList extends Component {
         null) : (
           console.log('editing item'),
           e.preventDefault(),
-          this.props.editTodo(e.target.value)
+          this.props.handleEditTodo(e.target.value)
         )
     )
   }
