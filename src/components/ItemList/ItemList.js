@@ -4,19 +4,9 @@ import "./ItemList.scss";
 
 
 class ItemList extends Component {
-  handleKeyPress = (e) => {
-    e.key !== 'Enter' ? (
-      console.log('different key pressed'),
-      null) : (
-        !e.target.value.trim() ? (
-          console.log(e),
-          console.log('this should delete the item'), 
-        null) : (
-          console.log('editing item'),
-          e.preventDefault(),
-          this.props.handleEditTodo(e.target.value)
-        )
-    )
+  handleChangeTodo = (e) => {
+    console.log("event target value: " + e.target.value)
+    this.props.handleEditTodo(e.target.value)
   }
   render() {
     const Items = visibleTodos =>
@@ -26,7 +16,7 @@ class ItemList extends Component {
             key={todo.id}
             todo={todo}
             handleClick={() => this.props.handleToggleTodo(todo.id)}
-            handleKeyPress={this.handleKeyPress}
+            handleChangeTodo={this.handleChangeTodo}
           />
         )}
       </ul>;

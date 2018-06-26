@@ -17,6 +17,7 @@ class TodoApp extends Component {
   };
 
   handleEditTodo = (id, content) => {
+    console.log(id)
     this.props.editTodo(id, content)
   };
 

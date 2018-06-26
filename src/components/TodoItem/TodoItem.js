@@ -22,7 +22,7 @@ class TodoItem extends React.Component {
               className="inEdit"
               value={this.props.todo.content}
               onBlur={() => this.toggleEditable(false)}
-              onKeyPress={this.props.handleKeyPress}
+              onChange={(e) => this.props.handleChangeTodo(e)}
             />
             ) : (
             <p onDoubleClick={() => this.toggleEditable(true)}>
