@@ -28,7 +28,11 @@ class TodoApp extends Component {
     return (
       <Fragment>
         <AddItem handleAddTodo={this.handleAddTodo} />
-        <ItemList visibleTodos={this.state.visibleTodos} />
+        <ItemList
+          visibleTodos={this.props.todos}
+          handleEditTodo={this.handleEditTodo}
+          handleToggleTodo={this.handleToggleTodo}
+        />
         {/* <form>
           <p>1 item left</p>
           <div>
