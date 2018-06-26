@@ -1,15 +1,12 @@
-let nextTodoId = 0
-const addTodo = text => ({
-  type: 'ADD_TODO',
-  id: nextTodoId++,
-  text
-})
+let nextTodoId = 0;
 
-export const addNewTodo = text => ({
-  type: 'ADD_TODO',
-  id: nextTodoId++,
-  text
-})
+const addNewTodo = content => ({
+  type: "ADD_TODO",
+  data: {
+    id: nextTodoId++,
+    content
+  }
+});
 
 const setVisibilityFilter = filter => ({
   type: 'SET_VISIBILITY_FILTER',
