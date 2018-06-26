@@ -1,17 +1,17 @@
 import React from 'react'
+import '../../styles/mixins.scss';
 
 const Todo = ({ handleClick, handleKeyPress, todo }) => (
   <li>
     <input onClick={handleClick} type="checkbox" id={todo.id} name="todoitem" value="item1" />
     <label
-      htmlFor={todo.id}
       style={{textDecoration: todo.completed ? 'line-through' : 'none'}}
     >
       <p
+        onKeyPress={handleKeyPress}
         onDoubleClick={(e) => (
           e.target.contentEditable=true,
-          e.target.className='inEdit',
-          e.target.onKeyPress={handleKeyPress}
+          e.target.className='inEdit'
         )}
         onBlur={(e) => (e.target.contentEditable=false, e.target.className='')}
         contentEditable="false"
