@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import AddItem from "../AddItem";
 import ItemList from "../ItemList";
-import * as actions from '../../actions'
+import * as actions from "../../actions";
 
 import "./TodoApp.scss";
 
@@ -10,9 +10,6 @@ class TodoApp extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      visibleTodos: []
-    };
   }
 
   handleAddTodo = content => {
@@ -29,7 +26,7 @@ class TodoApp extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <AddItem handleAddTodo={this.handleAddTodo} />
         <ItemList visibleTodos={this.state.visibleTodos} />
         {/* <form>
@@ -50,7 +47,7 @@ class TodoApp extends Component {
           </div>
           <input type="button" className="btn" value="Clear completed"></input>
         </form> */}
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
