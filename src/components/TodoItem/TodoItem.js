@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Todo = ({ onClick, key, completed, content }) => (
+const Todo = ({ handleClick, handleKeyPress, todo }) => (
   <li>
-    <input onClick={onClick} type="checkbox" id={key} name="todoitem" value="item1" />
+    <input onClick={handleClick} type="checkbox" id={todo.id} name="todoitem" value="item1" />
     <label
       for={key}
       style={{textDecoration: completed ? 'line-through' : 'none'}}
