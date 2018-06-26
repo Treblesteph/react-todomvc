@@ -1,26 +1,34 @@
 import React from 'react'
 import '../../styles/mixins.scss';
 
-const Todo = ({ handleClick, handleKeyPress, todo }) => (
-  <li>
-    <input onClick={handleClick} type="checkbox" id={todo.id} name="todoitem" value="item1" />
-    <label
-      style={{textDecoration: todo.completed ? 'line-through' : 'none'}}
-    >
-      <p
-        onKeyPress={handleKeyPress}
-        onDoubleClick={(e) => (
-          e.target.contentEditable=true,
-          e.target.className='inEdit'
-        )}
-        onBlur={(e) => (e.target.contentEditable=false, e.target.className='')}
-        contentEditable="false"
-        className=""
-      >
-        {todo.content}
-      </p>
-    </label>
-  </li>
-)
+class TodoItem extends React.Component {
+  constructor() {
+    super();
+    this.state = { isEditable: false }
+  }
 
-export default Todo
+  toggleEditable = (value) => {
+    this.setState({ isEditable: value })
+  }
+
+  render () {
+    return (
+      <li>
+        <input onClick={this.props.handleClick} type="checkbox" id={this.props.todo.id} name="todoitem" />
+        <label style={{textDecoration: this.props.todo.completed ? 'line-through' : 'none'}}>
+          {this.state.isEditable ? (
+            console.log("hello"),
+            <input autoFocus className="inEdit" value={this.props.todo.content} onBlur={() => this.toggleEditable(false)} onKeyPress={this.props.handleKeyPress} />
+            ) : (
+              <p onDoubleClick={() => this.toggleEditable(true)}>
+              {this.props.todo.content}
+            </p>
+            )
+          }
+        </label>
+      </li>
+    )
+  }
+}
+
+export default TodoItem
