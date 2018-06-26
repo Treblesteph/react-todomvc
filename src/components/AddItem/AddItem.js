@@ -11,7 +11,8 @@ class AddItem extends Component {
       console.log('no content to add'), 
       null) : (
         console.log('adding item'),
-        dispatch(addTodo(e.target.value))
+        e.preventDefault(),
+        this.props.handleAddTodo(e.target.value)
       )
     )
   }
@@ -27,4 +28,4 @@ class AddItem extends Component {
   }
 }
 
-export default connect()(AddItem)
+export default AddItem

@@ -15,11 +15,13 @@ class TodoApp extends Component {
     };
   }
 
-  handleAddTodo = () => {
-    const foo = {
-      content: 'foo'
-    }
-    this.props.addNewTodo(foo)
+  handleAddTodo = content => {
+    this.props.addNewTodo(content);
+  };
+
+  handleEditTodo = (id, content) => {
+    this.props.editTodo(id, content)
+  };
 
   handleToggleTodo = id => {
     this.props.toggleTodo(id);
