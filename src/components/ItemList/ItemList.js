@@ -4,9 +4,10 @@ import "./ItemList.scss";
 
 
 class ItemList extends Component {
-  handleChangeTodo = (e) => {
+  handleChangeTodo = (e, id) => {
     console.log("event target value: " + e.target.value)
-    this.props.handleEditTodo(e.target.value)
+    console.log("item id: " + id)
+    this.props.handleEditTodo(e.target.value, id)
   }
   render() {
     const Items = visibleTodos =>

@@ -17,10 +17,11 @@ const todos = (state = [], action) => {
       );
     case "UPDATE_TODO":
       console.log(state)
+      console.log(action)
       return state.map(
         todo =>
-          todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
-      );
+          todo.id === action.id ? { ...todo, content: action.data.content } : todo
+        );
     default:
       return state;
   }

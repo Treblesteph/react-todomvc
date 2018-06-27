@@ -13,10 +13,12 @@ const setVisibilityFilter = filter => ({
   filter
 });
 
-const editTodo = (id, content) => ({
+const editTodo = (content, id) => ({
   type: "UPDATE_TODO",
-  id,
-  content
+  data: {
+    id,
+    content
+  }
 });
 
 const toggleTodo = id => ({

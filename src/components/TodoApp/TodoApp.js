@@ -16,9 +16,10 @@ class TodoApp extends Component {
     this.props.addNewTodo(content);
   };
 
-  handleEditTodo = (id, content) => {
-    console.log(id)
-    this.props.editTodo(id, content)
+  handleEditTodo = (content, id) => {
+    console.log("content: " + content)
+    console.log("id: " + id)
+    this.props.editTodo(content, id)
   };
 
   handleToggleTodo = id => {
@@ -65,9 +66,9 @@ const mapPropsToState = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addNewTodo: todo => dispatch(actions.addNewTodo(todo)),
-    editTodo: todo => dispatch(actions.editTodo(todo)),
-    toggleTodo: todo => dispatch(actions.toggleTodo(todo))
+    addNewTodo: content => dispatch(actions.addNewTodo(content)),
+    editTodo: (content, id) => dispatch(actions.editTodo(content, id)),
+    toggleTodo: id => dispatch(actions.toggleTodo(id))
   };
 };
 
