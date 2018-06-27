@@ -12,7 +12,8 @@ class AddItem extends Component {
       null) : (
         console.log('adding item'),
         e.preventDefault(),
-        this.props.handleAddTodo(e.target.value)
+        this.props.handleAddTodo(e.target.value),
+        e.target.value = ""
       )
     )
   }
