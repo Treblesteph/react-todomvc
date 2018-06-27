@@ -3,8 +3,22 @@ import { connect } from "react-redux";
 import AddItem from "../AddItem";
 import ItemList from "../ItemList";
 import * as actions from "../../actions";
+import { VisibilityFilters } from "../../actions"
 
 import "./TodoApp.scss";
+
+const getVisibleTodos = (todos, filter) => {
+  switch (filter) {
+    case VisibilityFilters.SHOW_ALL:
+      return todos
+    case VisibilityFilters.SHOW_COMPLETED:
+      return todos.filter(t => t.completed)
+    case VisibilityFilters.SHOW_ACTIVE:
+      return todos.filter(t => !t.completed)
+    default:
+      throw new Error('Unknown filter: ' + filter)
+  }
+}
 
 class TodoApp extends Component {
   constructor(props) {
@@ -17,8 +31,6 @@ class TodoApp extends Component {
   };
 
   handleEditTodo = (content, id) => {
-    console.log("content: " + content)
-    console.log("id: " + id)
     this.props.editTodo(content, id)
   };
 
@@ -26,7 +38,13 @@ class TodoApp extends Component {
     this.props.toggleTodo(id);
   };
 
+  handleVisibilityFilter = (e, filter) => {
+    e.target.checked;
+    this.props.setVisibilityFilter(filter);
+  }
+
   render() {
+    const todoCount = this.props.todos.filter(todo => !todo.completed).length;
     return (
       <Fragment>
         <AddItem handleAddTodo={this.handleAddTodo} />
@@ -35,24 +53,42 @@ class TodoApp extends Component {
           handleEditTodo={this.handleEditTodo}
           handleToggleTodo={this.handleToggleTodo}
         />
-        {/* <form>
-          <p>1 item left</p>
+        <form>
+          <p>{ todoCount } { todoCount === 1 ? "item left" : "items left" }</p>
           <div>
-            <input type="radio" id="all" name="filter" checked />
-            <label for="all">All</label>
+            <input
+              type="radio"
+              id="all"
+              name="filter"
+              checked={this.props.visibilityFilter === 'SHOW_ALL'}
+              onChange={(e) => this.handleVisibilityFilter(e, 'SHOW_ALL')}
+            />
+            <label htmlFor="all">All</label>
           </div>
 
           <div>
-            <input type="radio" id="active" name="filter" />
-            <label for="active">Active</label>
+            <input
+              type="radio"
+              id="active"
+              name="filter"
+              checked={this.props.visibilityFilter === 'SHOW_ACTIVE'}
+              onChange={(e) => this.handleVisibilityFilter(e, 'SHOW_ACTIVE')}
+            />
+            <label htmlFor="active">Active</label>
           </div>
 
           <div>
-            <input type="radio" id="completed" name="filter" />
-            <label for="completed">Completed</label>
+            <input
+              type="radio"
+              id="completed"
+              name="filter"
+              checked={this.props.visibilityFilter === 'SHOW_COMPLETED'}
+              onChange={(e) => this.handleVisibilityFilter(e, 'SHOW_COMPLETED')}
+            />
+            <label htmlFor="completed">Completed</label>
           </div>
           <input type="button" className="btn" value="Clear completed"></input>
-        </form> */}
+        </form>
       </Fragment>
     );
   }
@@ -60,7 +96,8 @@ class TodoApp extends Component {
 
 const mapPropsToState = state => {
   return {
-    todos: state.todos
+    todos: getVisibleTodos(state.todos, state.visibilityFilter),
+    visibilityFilter: state.visibilityFilter
   };
 };
 
@@ -68,7 +105,8 @@ const mapDispatchToProps = dispatch => {
   return {
     addNewTodo: content => dispatch(actions.addNewTodo(content)),
     editTodo: (content, id) => dispatch(actions.editTodo(content, id)),
-    toggleTodo: id => dispatch(actions.toggleTodo(id))
+    toggleTodo: id => dispatch(actions.toggleTodo(id)),
+    setVisibilityFilter: filter => dispatch(actions.setVisibilityFilter(filter))
   };
 };
 
