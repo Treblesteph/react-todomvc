@@ -43,10 +43,24 @@ class TodoApp extends Component {
     this.props.setVisibilityFilter(filter);
   }
 
+  handleToggleAll = () => {
+    if (this.props.todos.filter(todo => todo.completed === false).length !== 0) {
+      this.props.todos.map(todo => todo.completed === false ? this.props.toggleTodo(todo.id) : todo)
+    } else {
+      this.props.todos.map(todo => this.props.toggleTodo(todo.id))
+    }
+  }
+
   render() {
     const todoCount = this.props.todos.filter(todo => !todo.completed).length;
     return (
       <Fragment>
+        <input
+          type="button"
+          className="btn"
+          value="⌄"
+          onClick={()=>this.handleToggleAll()}
+        />
         <AddItem handleAddTodo={this.handleAddTodo} />
         <ItemList
           visibleTodos={this.props.todos}
@@ -87,7 +101,7 @@ class TodoApp extends Component {
             />
             <label htmlFor="completed">Completed</label>
           </div>
-          <input type="button" className="btn" value="Clear completed"></input>
+          <input type="button" className="btn" value="Clear completed" />
         </form>
       </Fragment>
     );

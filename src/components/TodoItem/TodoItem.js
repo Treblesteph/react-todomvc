@@ -27,7 +27,7 @@ class TodoItem extends React.Component {
   render () {
     return (
       <li>
-        <input onClick={this.props.handleClick} type="checkbox" id={this.props.todo.id} name="todoitem" />
+        <input checked={this.props.todo.completed} onClick={this.props.handleClick} type="checkbox" id={this.props.todo.id} name="todoitem" />
         <label style={{textDecoration: this.props.todo.completed ? 'line-through' : 'none'}}>
           {this.state.isEditable ? (
             <input
