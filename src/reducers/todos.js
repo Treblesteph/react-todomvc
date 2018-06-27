@@ -8,16 +8,14 @@ const todos = (state = [], action) => {
           completed: false
         }
       ];
+    case "REMOVE_TODO":
+      return state.filter(todo => todo.id !== action.id);
     case "TOGGLE_TODO":
-      console.log(state)
-      console.log(action)
       return state.map(
         todo =>
           todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
       );
     case "UPDATE_TODO":
-      console.log(state)
-      console.log(action)
       return state.map(
         todo =>
           todo.id === action.data.id ? { ...todo, content: action.data.content } : todo

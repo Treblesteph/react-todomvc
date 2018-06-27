@@ -17,6 +17,7 @@ class ItemList extends Component {
             key={todo.id}
             todo={todo}
             handleClick={() => this.props.handleToggleTodo(todo.id)}
+            handleDeleteTodo={this.props.handleDeleteTodo}
             handleChangeTodo={this.handleChangeTodo}
           />
         )}

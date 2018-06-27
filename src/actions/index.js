@@ -8,6 +8,11 @@ const addNewTodo = content => ({
   }
 });
 
+const removeTodo = id => ({
+  type: "REMOVE_TODO",
+  id
+});
+
 const setVisibilityFilter = filter => ({
   type: "SET_VISIBILITY_FILTER",
   filter
@@ -32,4 +37,4 @@ const VisibilityFilters = {
   SHOW_ACTIVE: "SHOW_ACTIVE"
 };
 
-export { addNewTodo, toggleTodo, setVisibilityFilter, editTodo, VisibilityFilters };
+export { addNewTodo, removeTodo, toggleTodo, setVisibilityFilter, editTodo, VisibilityFilters };

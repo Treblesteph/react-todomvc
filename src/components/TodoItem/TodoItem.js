@@ -11,12 +11,15 @@ class TodoItem extends React.Component {
     this.setState({ isEditable: value })
   }
 
-  handleKeyPress = (e) => {e.key !== 'Enter' ? (
+  handleKeyPress = (e, id, deleteTodo) => {e.key !== 'Enter' ? (
     console.log('editing todo item'),
     null) : (
      !e.target.value.trim() ? (
-      console.log('this should delete the item'), 
-      null) : (
+      console.log('this should delete the item'),
+      e.preventDefault(),
+      e.target.blur(),
+      deleteTodo(id)
+      ) : (
         console.log('updating item'),
         e.preventDefault(),
         e.target.blur()
@@ -36,7 +39,7 @@ class TodoItem extends React.Component {
               value={this.props.todo.content}
               onBlur={() => this.toggleEditable(false)}
               onChange={(e) => this.props.handleChangeTodo(e, this.props.todo.id)}
-              onKeyPress={(e) => this.handleKeyPress(e)}
+              onKeyPress={(e) => this.handleKeyPress(e, this.props.todo.id, this.props.handleDeleteTodo)}
             />
             ) : (
             <p onDoubleClick={() => this.toggleEditable(true)}>

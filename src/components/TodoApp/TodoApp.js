@@ -38,6 +38,10 @@ class TodoApp extends Component {
     this.props.toggleTodo(id);
   };
 
+  handleRemoveTodo = id => {
+    this.props.removeTodo(id)
+  };
+
   handleVisibilityFilter = (e, filter) => {
     e.target.checked;
     this.props.setVisibilityFilter(filter);
@@ -49,6 +53,10 @@ class TodoApp extends Component {
     } else {
       this.props.todos.map(todo => this.props.toggleTodo(todo.id))
     }
+  }
+
+  handleRemoveCompleted = () => {
+    this.props.todos.map(todo => todo.completed === true ? this.props.removeTodo(todo.id) : null)
   }
 
   render() {
@@ -65,6 +73,7 @@ class TodoApp extends Component {
         <ItemList
           visibleTodos={this.props.todos}
           handleEditTodo={this.handleEditTodo}
+          handleDeleteTodo={this.handleRemoveTodo}
           handleToggleTodo={this.handleToggleTodo}
         />
         <form>
@@ -101,7 +110,12 @@ class TodoApp extends Component {
             />
             <label htmlFor="completed">Completed</label>
           </div>
-          <input type="button" className="btn" value="Clear completed" />
+          <input
+            type="button"
+            className="btn"
+            value="Clear completed"
+            onClick={()=>this.handleRemoveCompleted()}
+          />
         </form>
       </Fragment>
     );
@@ -118,6 +132,7 @@ const mapPropsToState = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addNewTodo: content => dispatch(actions.addNewTodo(content)),
+    removeTodo: id => dispatch(actions.removeTodo(id)),
     editTodo: (content, id) => dispatch(actions.editTodo(content, id)),
     toggleTodo: id => dispatch(actions.toggleTodo(id)),
     setVisibilityFilter: filter => dispatch(actions.setVisibilityFilter(filter))
