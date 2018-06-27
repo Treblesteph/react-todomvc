@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 // import { addTodo } from '../actions'
 
 import './AddItem.scss'
@@ -19,11 +19,11 @@ class AddItem extends Component {
 
   render () {
     return (
-      <React.Fragment>
+      <Fragment>
         <form>
           <input type="text" onKeyPress={this.handleKeyPress} name="additem" placeholder="What needs to be done?"></input>
         </form>
-      </React.Fragment>
+      </Fragment>
     )
   }
 }
