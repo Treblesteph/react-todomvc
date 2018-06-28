@@ -21,9 +21,17 @@ class AddItem extends Component {
   render () {
     return (
       <Fragment>
-        <form>
-          <input type="text" onKeyPress={this.handleKeyPress} name="additem" placeholder="What needs to be done?"></input>
-        </form>
+        {this.props.todos.length !== 0 ? <a
+          styleName={this.props.todos.filter(t => !t.completed).length === 0 ? 'togglebutton toggle-on' : 'togglebutton'}
+          onClick={()=>this.props.handleToggleAll()}
+        /> : <span />}
+        <input
+          styleName='todorow'
+          type="text"
+          onKeyPress={this.handleKeyPress}
+          name="additem"
+          placeholder="What needs to be done?"
+        />
       </Fragment>
     )
   }

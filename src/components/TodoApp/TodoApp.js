@@ -63,13 +63,11 @@ class TodoApp extends Component {
     const todoCount = this.props.todos.filter(todo => !todo.completed).length;
     return (
       <Fragment>
-        <input
-          type="button"
-          className="btn"
-          value="⌄"
-          onClick={()=>this.handleToggleAll()}
+        <AddItem
+          todos={this.props.todos}
+          handleAddTodo={this.handleAddTodo}
+          handleToggleAll={this.handleToggleAll}
         />
-        <AddItem handleAddTodo={this.handleAddTodo} />
         <ItemList
           visibleTodos={this.props.todos}
           handleEditTodo={this.handleEditTodo}

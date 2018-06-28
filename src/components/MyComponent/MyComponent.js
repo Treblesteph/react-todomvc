@@ -6,7 +6,7 @@ import './MyComponent.scss'
 class MyComponent extends Component {
   render () {
     return (
-      <App styleName='wrapper' />
+      <App />
     )
   }
 }

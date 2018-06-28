@@ -1,7 +1,11 @@
-@mixin transform($property) {
-  transform: $property;
+@import 'reset';
+
+@mixin completed {
+  text-decoration: line-through;
+  opacity: .4;
 }
 
-.box {
-  @include transform(rotate(30deg));
+@mixin notCompleted {
+  text-decoration: none;
+  opacity: 1;
 }
