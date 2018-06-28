@@ -26,6 +26,7 @@ class AddItem extends Component {
           onClick={()=>this.props.handleToggleAll()}
         /> : <span />}
         <input
+          autoComplete="off"
           styleName='todorow'
           type="text"
           onKeyPress={this.handleKeyPress}

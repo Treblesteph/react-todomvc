@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div styleName="wrapper">
         <header><h1 styleName='title'>todos</h1></header>
-        <section styleName='todoapp'><TodoApp /></section>
+        <section><TodoApp /></section>
         <footer styleName='footnotes'>
           <small styleName='footnote'>Double-click to edit a todo</small>
           <small styleName='footnote'>Written by <a styleName='footlink' href="http://github.com/treblesteph" target="_blank">Stephanie Unna</a></small>
