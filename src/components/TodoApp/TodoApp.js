@@ -77,45 +77,43 @@ class TodoApp extends Component {
               handleToggleTodo={this.handleToggleTodo}
             />
             <form styleName='list-options'>
-              <p>{ todoCount } { todoCount === 1 ? "item left" : "items left" }</p>
-              <div>
-                <input
-                  type="radio"
-                  id="all"
-                  name="filter"
-                  checked={this.props.visibilityFilter === 'SHOW_ALL'}
-                  onChange={(e) => this.handleVisibilityFilter(e, 'SHOW_ALL')}
-                />
-                <label htmlFor="all">All</label>
-              </div>
+              <p styleName='items-remaining'>{ todoCount } { todoCount === 1 ? "item left" : "items left" }</p>
+              <div styleName='filter-wrapper'>
+                <div styleName={this.props.visibilityFilter === 'SHOW_ALL' ? 'active-filter' : 'inactive-filter'}>
+                  <input
+                    type="radio"
+                    id="all"
+                    name="filter"
+                    checked={this.props.visibilityFilter === 'SHOW_ALL'}
+                    onChange={(e) => this.handleVisibilityFilter(e, 'SHOW_ALL')}
+                  />
+                  <label htmlFor="all">All</label>
+                </div>
 
-              <div>
-                <input
-                  type="radio"
-                  id="active"
-                  name="filter"
-                  checked={this.props.visibilityFilter === 'SHOW_ACTIVE'}
-                  onChange={(e) => this.handleVisibilityFilter(e, 'SHOW_ACTIVE')}
-                />
-                <label htmlFor="active">Active</label>
-              </div>
+                <div styleName={this.props.visibilityFilter === 'SHOW_ACTIVE' ? 'active-filter' : 'inactive-filter'}>
+                  <input
+                    type="radio"
+                    id="active"
+                    name="filter"
+                    checked={this.props.visibilityFilter === 'SHOW_ACTIVE'}
+                    onChange={(e) => this.handleVisibilityFilter(e, 'SHOW_ACTIVE')}
+                  />
+                  <label htmlFor="active">Active</label>
+                </div>
 
-              <div>
-                <input
-                  type="radio"
-                  id="completed"
-                  name="filter"
-                  checked={this.props.visibilityFilter === 'SHOW_COMPLETED'}
-                  onChange={(e) => this.handleVisibilityFilter(e, 'SHOW_COMPLETED')}
-                />
-                <label htmlFor="completed">Completed</label>
+                <div styleName={this.props.visibilityFilter === 'SHOW_COMPLETED' ? 'active-filter' : 'inactive-filter'}>
+                  <input
+                    type="radio"
+                    id="completed"
+                    name="filter"
+                    checked={this.props.visibilityFilter === 'SHOW_COMPLETED'}
+                    onChange={(e) => this.handleVisibilityFilter(e, 'SHOW_COMPLETED')}
+                  />
+                  <label htmlFor="completed">Completed</label>
+                </div>
               </div>
-              <input
-                type="button"
-                className="btn"
-                value="Clear completed"
-                onClick={()=>this.handleRemoveCompleted()}
-              />
+              {this.props.todos.filter(t => t.completed === true).length !== 0 ?
+                <a styleName='clear-btn' onClick={()=>this.handleRemoveCompleted()}>Clear completed</a> : <span styleName='spacer'/> }
             </form>
           </Fragment>: <span /> 
         }
