@@ -30,29 +30,46 @@ class TodoItem extends React.Component {
   render () {
     return (
       <li styleName='list-item'>
-        <input
-          styleName='item-checkbox'
-          checked={this.props.todo.completed}
-          onClick={this.props.handleClick}
-          type="checkbox"
-          id={this.props.todo.id}
-          name="todoitem"
-        />
-        <span onClick={this.props.handleClick} styleName={this.props.todo.completed ? 'custom-check-completed' : 'custom-check'} />
+        {this.state.isEditable ? <span /> :
+          <React.Fragment>
+            <input
+              styleName='item-checkbox'
+              checked={this.props.todo.completed}
+              onClick={this.props.handleClick}
+              type="checkbox"
+              id={this.props.todo.id}
+              name="todoitem"
+            />
+            <span
+              onClick={this.props.handleClick}
+              styleName={this.props.todo.completed ? 'custom-check-completed' : 'custom-check'}
+            />
+          </React.Fragment>
+        }
         <label styleName={this.props.todo.completed ? 'item-label-completed' : 'item-label'}>
           {this.state.isEditable ? (
             <input
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck='false'
               autoFocus
-              className="inEdit"
+              styleName="in-edit"
               value={this.props.todo.content}
               onBlur={() => this.toggleEditable(false)}
               onChange={(e) => this.props.handleChangeTodo(e, this.props.todo.id)}
               onKeyPress={(e) => this.handleKeyPress(e, this.props.todo.id, this.props.handleDeleteTodo)}
             />
             ) : (
-            <p onDoubleClick={() => this.toggleEditable(true)}>
-              {this.props.todo.content}
-            </p>
+              <div styleName='row-wrapper'>
+                <p onDoubleClick={() => this.toggleEditable(true)}>
+                  {this.props.todo.content}
+                </p>
+                <a
+                  styleName='delete-btn'
+                  onClick={()=>this.props.handleDeleteTodo(this.props.todo.id)}
+                > ✕ </a>
+              </div>
             )
           }
         </label>
