@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../styles/mixins.scss';
+import "./TodoItem.scss";
 
 class TodoItem extends React.Component {
   constructor() {
@@ -29,9 +29,17 @@ class TodoItem extends React.Component {
   
   render () {
     return (
-      <li>
-        <input checked={this.props.todo.completed} onClick={this.props.handleClick} type="checkbox" id={this.props.todo.id} name="todoitem" />
-        <label style={{textDecoration: this.props.todo.completed ? 'line-through' : 'none'}}>
+      <li styleName='list-item'>
+        <input
+          styleName='item-checkbox'
+          checked={this.props.todo.completed}
+          onClick={this.props.handleClick}
+          type="checkbox"
+          id={this.props.todo.id}
+          name="todoitem"
+        />
+        <span onClick={this.props.handleClick} styleName={this.props.todo.completed ? 'custom-check-completed' : 'custom-check'} />
+        <label styleName={this.props.todo.completed ? 'item-label-completed' : 'item-label'}>
           {this.state.isEditable ? (
             <input
               autoFocus

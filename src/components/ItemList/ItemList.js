@@ -11,7 +11,7 @@ class ItemList extends Component {
   }
   render() {
     const Items = visibleTodos =>
-      <ul>
+      <ul styleName='item-wrapper'>
         {visibleTodos.map(todo =>
           <TodoItem
             key={todo.id}
@@ -24,7 +24,7 @@ class ItemList extends Component {
       </ul>;
     const { visibleTodos } = this.props;
     return (
-      <form>
+      <form styleName='todolist'>
         {Items(visibleTodos)}
       </form>
     );

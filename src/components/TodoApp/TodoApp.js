@@ -76,7 +76,7 @@ class TodoApp extends Component {
               handleDeleteTodo={this.handleRemoveTodo}
               handleToggleTodo={this.handleToggleTodo}
             />
-            <form>
+            <form styleName='list-options'>
               <p>{ todoCount } { todoCount === 1 ? "item left" : "items left" }</p>
               <div>
                 <input
